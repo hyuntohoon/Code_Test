@@ -1,5 +1,4 @@
 # Code_Test
-Prepare
 
 What is this?
 -------------
