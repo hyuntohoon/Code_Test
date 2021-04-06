@@ -30,4 +30,4 @@ int solution(std::vector<int> a) {
         return 0;
     }
     return answer*2;
-}
+} 
