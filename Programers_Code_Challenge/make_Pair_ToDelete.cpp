@@ -32,7 +32,7 @@ void buffer_except(){
 stack<char> STACK;
 int solution(string s)
 {
-    STACK.push(s[0]);
+    STACK.push(s[0]);`
     for(int i = 1;i<s.size();i++){
         if(STACK.empty()){
            // cout<<"hi"<<endl;
