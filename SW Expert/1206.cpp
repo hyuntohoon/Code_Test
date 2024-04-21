@@ -30,6 +30,6 @@ int main()
             result = min(leftMin, rightMin);
             sum += result;
         }
-        printf("#%d %d", t, sum);
+        printf("#%d %d", t, sum); 
     }
 }
