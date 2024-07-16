@@ -62,6 +62,7 @@ public class Main_10026 {
 				redGreenBoard[i][j] = temp.charAt(j);
 			}
 		}
+		
 		int cnt = 0;
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
