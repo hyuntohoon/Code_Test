@@ -7,7 +7,7 @@
 #define FOR(i,n) for(int i =0;i<n;i++)
 using namespace std;
 using ll = long long;
-
+ 
 ll result = 0;
 ll N;
 void go(ll n, ll cnt, string temp) {
