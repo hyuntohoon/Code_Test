@@ -7,7 +7,7 @@ int arr[501];
 
 void input() {
     cin >> H >> W;
-    for (int i = 0; i < W; i++) {
+    for (int i = 0; i < W; i++) { 
         cin >> arr[i];
     }
 }
