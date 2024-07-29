@@ -9,7 +9,7 @@ struct scv
 	int F,S,T,count;
 };
 int main(){
-int N;
+int N; 
 cin>>N;
 int SCV[3] = {0,};
 FOR(i, N) {
