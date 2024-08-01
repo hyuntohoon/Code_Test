@@ -11,7 +11,7 @@ using ll = long long;
 ll result = 0;
 ll N;
 void go(ll n, ll cnt, string temp) {
-	if (n == cnt) {
+	if (n == cnt) { 
 		result++;
 		//cout<<temp<<endl;
 		if (result == N+1) {
