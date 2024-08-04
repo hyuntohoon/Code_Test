@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class Main{
 	public static void main(String[] args) throws IOException {
-		int N, M;
+		int N, M; 
 		int[][] DP;
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
