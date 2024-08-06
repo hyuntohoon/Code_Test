@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main_10026 {
+public class Main_10026 { 
 	static int N;
 	static int[] dx = { 0, 0, -1, 1 };
 	static int[] dy = { 1, -1, 0, 0 };
