@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Main_실버4_1158_요세푸스문제 {
+public class Main_실버4_1158_요세푸스문제 { 
 	static int N, K;
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
