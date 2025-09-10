@@ -30,10 +30,13 @@ public class Main {
         al.sort((a, b) -> a - b);
         int M = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
         for(int i = 0; i < M; i++) {
 
             int a= Integer.parseInt(st.nextToken());
-            System.out.print(bin(a)+ " ");
+          //  System.out.print(bin(a)+ " ");
+            sb.append(bin(a)+" ");
         }
+        System.out.println(sb);
     }
 }
