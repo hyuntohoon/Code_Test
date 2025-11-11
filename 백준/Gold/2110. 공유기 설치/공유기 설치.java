@@ -1,53 +1,39 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        long []arr = new long[N];
-        long end = 0;
-        for(int i =0;i<N;i++) {
-            arr[i] = Long.parseLong(br.readLine());
-            if(i >0) end = Math.max(end, Math.abs(arr[i]-arr[i-1]));
+        int n = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
+        int []arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
         }
         Arrays.sort(arr);
-        end = arr[N-1] - arr[0]+1;
-        //System.out.println(end);
-        long start = 0;
-        long mid = 0;
-        long ans = 0;
-        while(start < end){
-            mid = start +(end - start)/2;
-            int findR = findR(arr, mid,M);
-            //System.out.println(findR + " " + mid);
-            if(findR == -1 || findR < M){
-                end = mid;
-            } // 실패시 길이 줄이기
-            else{ // 성공시 길이 늘리기
-                ans =mid;
-                start = mid+1;
+        int left =1;
+        int right = arr[n-1] - arr[0];
+        int answer = 0;
+        while(left <= right){
+            int mid = left + (right - left)/2;
+            int last = arr[0];
+            int cnt = 1;
+            for(int i = 1;i<n;i++){
+                if(arr[i] - last >= mid){
+                    cnt++;
+                    last = arr[i];
+                }
+            }
+            if(cnt >= c){ // 성공
+                left = mid +1;
+                answer = mid;
+            }
+            else{
+                right = mid -1;
             }
         }
-        System.out.println(ans);
+        System.out.println(answer);
     }
-
-    private static int findR(long[] arr, long length, int max) {
-        int count = 1;
-        // 지금을 기준으로 순회하여 해당 지점이 큰게 있다면 count++
-        long last = arr[0];
-        for(int i = 1;i<arr.length;i++) {
-            if(arr[i] - last >=length){
-                count++;
-                last = arr[i];
-                if(max == count) return count;
-            }
-        }
-        return count;
-    }
-
 }
