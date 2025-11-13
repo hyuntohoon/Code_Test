@@ -1,65 +1,58 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static int N,M;
-    public static ArrayList<Node>[] graph;
     public static class Node implements Comparable<Node> {
-        int index, weight;
-        Node(int index, int weight){
-            this.index = index;
+        int vertex, weight;
+        public Node(int vertex, int weight) {
+            this.vertex = vertex;
             this.weight = weight;
         }
-
         @Override
         public int compareTo(Node o) {
             return this.weight - o.weight;
         }
     }
-    public static int dijkstra(int start, int end){
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-        pq.add(new Node(start, 0));
+   public static void main(String[] args) throws IOException {
+       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       int N = Integer.parseInt(br.readLine());
+       int M = Integer.parseInt(br.readLine());
+       StringTokenizer st;
+       List<List<Node>> graph = new ArrayList<>();
+       for(int i = 0; i < N+1; i++) {
+           graph.add(new ArrayList<>());
+       }
+       for(int i = 0; i < M; i++) {
+           st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            int weight = Integer.parseInt(st.nextToken());
+            graph.get(start).add(new Node(end, weight));
+       }
+       st = new StringTokenizer(br.readLine());
+       int startVertex = Integer.parseInt(st.nextToken());
+       int endVertex = Integer.parseInt(st.nextToken());
+       System.out.println(dij(startVertex, endVertex, graph,N));
+   }
+    public static int dij(int startVertex, int endVertex, List<List<Node>> graph, int N ) {
         int []dist = new int[N+1];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[start] = 0;
-        while(!pq.isEmpty()){
+        for(int i = 0;i<N+1;i++){
+            dist[i] = Integer.MAX_VALUE;
+        }
+        dist[startVertex] = 0;
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        pq.add(new Node(startVertex, 0));
+        while(!pq.isEmpty()) {
             Node cur = pq.poll();
-            int nowIndex = cur.index;
-            int nowWeight = cur.weight;
-            if(nowWeight > dist[nowIndex]){
-                continue;
-            }
-            for(Node n : graph[nowIndex]){
-                int newDist = dist[nowIndex] + n.weight;
-                if(newDist < dist[n.index]){
-                    dist[n.index] = newDist;
-                    pq.add(new Node(n.index, newDist));
+            if(dist[cur.vertex] < cur.weight) continue;
+            for(Node nextNode : graph.get(cur.vertex)) {
+                int nextDist = dist[cur.vertex] + nextNode.weight;
+                if(nextDist < dist[nextNode.vertex]) {
+                    dist[nextNode.vertex] = nextDist;
+                    pq.add(new Node(nextNode.vertex, nextDist));
                 }
             }
         }
-        return dist[end];
-    }
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-         N = Integer.parseInt(br.readLine());
-         M = Integer.parseInt(br.readLine());
-         graph = new ArrayList[N+1];
-        for(int i = 0; i <= N; i++){
-            graph[i] = new ArrayList<>();
-        }
-        StringTokenizer st;
-        for(int i = 0; i < M; i++){
-            st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-            int dist = Integer.parseInt(st.nextToken());
-            graph[start].add(new Node(end, dist));
-        }
-        st = new StringTokenizer(br.readLine());
-        int start = Integer.parseInt(st.nextToken());
-        int end = Integer.parseInt(st.nextToken());
-        System.out.println(dijkstra(start, end));
+        return dist[endVertex];
     }
 }
